@@ -11,10 +11,7 @@ public class FileLoggerFactory implements LoggerFactory{
         this.filename = filename;
     }
     @Override
-    public Logger createLogger() {
-        Logger logger = Logger.getInstance();
-        logger.setLogLevel(LogLevel.INFO);
-        logger.setLogSink(new FileSink(filename));
-        return logger;
+    public Logger createLogger(LogLevel logLevel) {
+        return Logger.getInstance(logLevel, new FileSink(filename));
     }
 }
