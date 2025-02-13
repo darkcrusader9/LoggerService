@@ -4,18 +4,19 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class FileSink implements LogSink{
-    private String filename;
+public class FileSink implements LogSink {
+    private final String filename;
+
     public FileSink(String filename) {
         this.filename = filename;
     }
+
     @Override
     public void log(String message) {
-        try{
-            PrintWriter printWriter = new PrintWriter(new FileWriter(filename, true));
+        try (PrintWriter printWriter = new PrintWriter(new FileWriter(filename, true))) {
             printWriter.println(message);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Failed to write to file", e);
         }
     }
 }
