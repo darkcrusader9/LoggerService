@@ -7,7 +7,6 @@ public enum LogLevel {
     WARN(4),
     ERROR(5);
 
-
     final int level;
 
     LogLevel(int level) {
